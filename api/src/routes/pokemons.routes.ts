@@ -9,10 +9,11 @@ import multerConfigs from '../config/multer';
 const routes = Router();
 
 routes.get('/', async (req: Request, res: Response) => {
-  const { page, limit } = req.query;
+  const { page, limit, name } = req.query;
   const paginate = {
     page: Number(page ?? 1),
     limit: Number(limit ?? 20),
+    name: String(name ?? ''),
   };
 
   const listPokemons = new ListPokemonsService();
