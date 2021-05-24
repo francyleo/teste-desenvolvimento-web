@@ -1,13 +1,14 @@
+import mongoose, { Document, Model, Schema, PaginateModel } from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 import PokemonType from '../@types/Pokemons';
-import mongoose, { Document, Model, Schema } from 'mongoose';
 
 export type PokemonDocument = Document & PokemonType;
-
-type PokemonModel = Model<PokemonDocument>;
+// type PokemonModel = Model<PokemonDocument>;
+type PokemonModel = PaginateModel<PokemonDocument>;
 
 const PokemonsSchema = new Schema({
   id: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },
@@ -17,31 +18,28 @@ const PokemonsSchema = new Schema({
     unique: true,
   },
   pokedex_number: {
-    type: Number,
-    required: true,
+    type: String,
   },
   img_name: {
     type: String,
     required: true,
   },
   generation: {
-    type: Number,
+    type: String,
     required: true,
   },
   evolution_age: {
-    type: Number,
-    required: true,
+    type: String,
   },
   evolved: {
-    type: Number,
+    type: String,
     required: true,
   },
   family_id: {
-    type: Number,
-    required: true,
+    type: String,
   },
   cross_gen: {
-    type: Number,
+    type: String,
     required: true,
   },
   type_one: {
@@ -59,65 +57,77 @@ const PokemonsSchema = new Schema({
     type: String,
   },
   stat_total: {
-    type: Number,
+    type: String,
   },
   atk: {
-    type: Number,
+    type: String,
     required: true,
   },
   def: {
-    type: Number,
+    type: String,
     required: true,
   },
   sta: {
-    type: Number,
+    type: String,
+    required: true,
+  },
+  status_total: {
+    type: String,
     required: true,
   },
   legendary: {
-    type: Number,
+    type: String,
     required: true,
   },
   aquireable: {
-    type: Number,
+    type: String,
     required: true,
   },
   spawns: {
-    type: Number,
+    type: String,
     required: true,
   },
   regional: {
-    type: Number,
+    type: String,
     required: true,
   },
   raidable: {
-    type: Number,
+    type: String,
     required: true,
   },
   hatchable: {
-    type: Number,
+    type: String,
     required: true,
   },
   shiny: {
-    type: Number,
+    type: String,
     required: true,
   },
   nest: {
-    type: Number,
+    type: String,
     required: true,
   },
-  new: {
-    type: Number,
+  is_new: {
+    type: String,
     required: true,
   },
   not_gettable: {
-    type: Number,
+    type: String,
     required: true,
   },
   future_evolve: {
-    type: Number,
+    type: String,
     required: true,
   },
+  cp_39: {
+    type: String,
+  },
+  cp_40: {
+    type: String,
+  },
 });
+
+PokemonsSchema.plugin(mongoosePaginate);
 
 const Pokemons = mongoose.model<PokemonDocument, PokemonModel>(
   'Pokemons',

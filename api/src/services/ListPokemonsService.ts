@@ -1,13 +1,17 @@
-import Pokemons from '@schemas/Pokemons';
+import { PaginateResult } from 'mongoose';
+import Pokemons, { PokemonDocument } from '@schemas/Pokemons';
 
 interface Request {
-  page?: String | Number | undefined;
-  limit?: String | Number | undefined;
+  page?: number;
+  limit?: number;
 }
 
 class ListPokemonsService {
-  async execute({ page, limit }: Request): Promise<void> {
-    const pokemons = await Pokemons.find();
+  async execute({
+    page = 1,
+    limit = 20,
+  }: Request): Promise<PaginateResult<PokemonDocument>> {
+    const pokemons = await Pokemons.paginate({}, { page, limit });
     return pokemons;
   }
 }

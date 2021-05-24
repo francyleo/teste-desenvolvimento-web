@@ -16,6 +16,7 @@ type PokemonType = {
   atk: number;
   def: number;
   sta: number;
+  status_total: number;
   legendary: number;
   aquireable: number;
   spawns: number;
@@ -24,7 +25,7 @@ type PokemonType = {
   hatchable: number;
   shiny: number;
   nest: number;
-  new: number;
+  is_new: number;
   not_gettable: number;
   future_evolve: number;
   cp_39: number;
