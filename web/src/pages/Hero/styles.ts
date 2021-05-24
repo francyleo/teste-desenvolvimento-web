@@ -8,3 +8,11 @@ export const Container = styled.main`
     right: -130px;
   }
 `;
+
+export const PaginationWrapper = styled.div`
+  font-size: 1.6rem;
+`;
+
+export const NotFound = styled.span`
+  font-size: 2rem;
+`;
