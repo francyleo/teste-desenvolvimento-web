@@ -5,6 +5,7 @@ import ListPokemonsService from '@services/ListPokemonsService';
 import UploadListPokemonsService from '@services/UploadListPokemonsService';
 
 import multerConfigs from '../config/multer';
+import ShowListPokemonsService from '@services/ShowListPokemonsService';
 
 const routes = Router();
 
@@ -20,6 +21,14 @@ routes.get('/', async (req: Request, res: Response) => {
   const pokemons = await listPokemons.execute(paginate);
 
   res.json(pokemons);
+});
+
+routes.get('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const showPokemon = new ShowListPokemonsService();
+  const pokemon = await showPokemon.execute({ id: Number(id) });
+
+  res.json(pokemon);
 });
 
 routes.post(
