@@ -1,6 +1,11 @@
-import mongoose from 'mongoose';
+import PokemonType from '../@types/Pokemons';
+import mongoose, { Document, Model, Schema } from 'mongoose';
 
-const PokemonsSchema = new mongoose.Schema({
+export type PokemonDocument = Document & PokemonType;
+
+type PokemonModel = Model<PokemonDocument>;
+
+const PokemonsSchema = new Schema({
   id: {
     type: Number,
     required: true,
@@ -32,7 +37,7 @@ const PokemonsSchema = new mongoose.Schema({
     required: true,
   },
   family_id: {
-    type: '',
+    type: Number,
     required: true,
   },
   cross_gen: {
@@ -114,6 +119,9 @@ const PokemonsSchema = new mongoose.Schema({
   },
 });
 
-const Pokemons = mongoose.model('Pokemons', PokemonsSchema);
+const Pokemons = mongoose.model<PokemonDocument, PokemonModel>(
+  'Pokemons',
+  PokemonsSchema,
+);
 
 export default Pokemons;

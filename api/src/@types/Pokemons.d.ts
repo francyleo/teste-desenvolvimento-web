@@ -1,0 +1,34 @@
+type PokemonType = {
+  id: number;
+  name: string;
+  pokedex_number: number;
+  img_name: number;
+  generation: number;
+  evolution_age: number;
+  evolved: number;
+  family_id: number;
+  cross_gen: number;
+  type_one: number;
+  type_two: number;
+  weather_one: number;
+  weather_two: number;
+  stat_total: number;
+  atk: number;
+  def: number;
+  sta: number;
+  legendary: number;
+  aquireable: number;
+  spawns: number;
+  regional: number;
+  raidable: number;
+  hatchable: number;
+  shiny: number;
+  nest: number;
+  new: number;
+  not_gettable: number;
+  future_evolve: number;
+  cp_39: number;
+  cp_40: number;
+};
+
+export default PokemonType;
