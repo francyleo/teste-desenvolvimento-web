@@ -49,7 +49,7 @@ class UploadListPokemonsService {
         id,
         name,
         pokedex_number,
-        img_name,
+        img_name: `https://pokeres.bastionbot.org/images/pokemon/${img_name}.png}`,
         generation,
         evolution_age,
         evolved,
