@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 interface StatusProps {
-  type: 'atk' | 'def' | 'sta';
+  type: 'atk' | 'def' | 'sta' | 'total';
 }
 
 const statusColors = {
   atk: '#00adff',
   def: '#05ab21',
   sta: '#d20000',
+  total: '#000',
 };
 
 export const Container = styled.section`

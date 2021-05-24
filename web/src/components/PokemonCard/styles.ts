@@ -4,8 +4,8 @@ export const Container = styled.div`
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   transition: 500ms;
-  max-width: 300px;
-  max-height: 300px;
+  min-width: 300px;
+  min-height: 100%;
   border-radius: 15px;
   cursor: pointer;
 
