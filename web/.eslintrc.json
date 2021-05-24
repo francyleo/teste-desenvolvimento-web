@@ -36,6 +36,7 @@
     "import/prefer-default-export": "off",
     "@typescript-eslint/camelcase": "off",
     "no-use-before-define": "off",
+    "camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
