@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
-import { Container } from './styles';
-import Logo from '../../assets/logo.svg';
 import PokemonCard from '../../components/PokemonCard';
 import Input from '../../components/Input';
+import IPokemon from '../../@types/Pokemon.interface';
+
+import { Container } from './styles';
+
+import Logo from '../../assets/logo.svg';
+import api from '../../service/api';
 
 const Hero: React.FC = () => {
-  const [pokemons] = useState([
-    {
-      id: 1,
-      name: 'Pipachu',
-    },
-  ] as Array<{
-    id: number;
-    name: string;
-  }>);
+  const [pokemons, setPokemons] = useState<IPokemon[]>([]);
+
+  useEffect(() => {
+    async function getPokemons(): Promise<void> {
+      const { data } = await api.get('/pokemons');
+      const pokemonsData: IPokemon[] = data.docs;
+      setPokemons(pokemonsData);
+    }
+
+    getPokemons();
+  }, []);
 
   return (
     <Container className="container">
@@ -32,7 +38,7 @@ const Hero: React.FC = () => {
 
       <div className="row mt-5">
         {pokemons.map(pokemon => (
-          <div className="col-3 mb-5">
+          <div className="col-12 col-lg-4 mb-5" key={pokemon.id}>
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
           </div>
         ))}
