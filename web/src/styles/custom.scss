@@ -1,4 +1,11 @@
+$primary: #0da2f5;
+$secondary: #26f2f5;
+
 $theme-colors: (
-  'info': tomato,
-  'danger': teal,
+  'primary': $primary,
+  'secondary': $secondary,
+  'black': black,
 );
+
+// $input-btn-focus-box-shadow: none;
+// $input-btn-border-width: 0;

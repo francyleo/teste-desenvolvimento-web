@@ -1,13 +1,15 @@
-import mongoose from '../config/database';
+import mongoose from 'mongoose';
 
 const PokemonsSchema = new mongoose.Schema({
   id: {
     type: Number,
     required: true,
+    unique: true,
   },
   name: {
     type: String,
     required: true,
+    unique: true,
   },
   pokedex_number: {
     type: Number,

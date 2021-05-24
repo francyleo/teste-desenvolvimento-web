@@ -1,6 +1,10 @@
 import express, { NextFunction, Request, Response } from 'express';
+
 import 'express-async-errors';
+import '@config/database';
+
 import cors from 'cors';
+import morgan from 'morgan';
 
 import routes from './routes';
 import AppError from './errors/AppError';
@@ -8,6 +12,8 @@ import AppError from './errors/AppError';
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded());
+app.use(morgan('dev'));
 app.use(cors());
 app.use('/api', routes);
 

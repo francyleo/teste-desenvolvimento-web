@@ -1,7 +1,9 @@
 import { Router } from 'express';
 
+import pokemons from './pokemons.routes';
+
 const routes = Router();
 
-routes.get('/ping', (_, res) => res.json('OK'));
+routes.use('/pokemons', pokemons);
 
 export default routes;

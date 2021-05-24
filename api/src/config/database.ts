@@ -8,13 +8,11 @@ const options: ConnectOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 };
 
+mongoose.Promise = global.Promise;
 mongoose.connect(
   `mongodb+srv://${db_user}:${db_password}@cluster0.gpujl.mongodb.net/${db_name}?retryWrites=true&w=majority`,
   options,
 );
-
-mongoose.Promise = global.Promise;
-
-export default mongoose;

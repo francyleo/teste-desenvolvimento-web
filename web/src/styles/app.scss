@@ -1,2 +1,13 @@
 @import './custom.scss';
 @import 'bootstrap/scss/bootstrap';
+
+html {
+  font-size: 64.5%;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to right, $primary, $secondary);
+  background-attachment: fixed;
+}

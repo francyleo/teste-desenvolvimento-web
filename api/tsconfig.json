@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "target": "es5",
     "module": "commonjs",
     "allowJs": true,
@@ -11,7 +11,14 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["node_modules/@types", "src/@types"],
+    "paths": {
+      "@config/*": ["config/*"],
+      "@schemas/*": ["schemas/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"]
+    }
   },
   "exclude": ["node_modules", "dist", "__tests__"]
 }
