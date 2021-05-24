@@ -1,9 +1,8 @@
-import mongoose, { Document, Model, Schema, PaginateModel } from 'mongoose';
+import mongoose, { Document, Schema, PaginateModel } from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 import PokemonType from '../@types/Pokemons';
 
 export type PokemonDocument = Document & PokemonType;
-// type PokemonModel = Model<PokemonDocument>;
 type PokemonModel = PaginateModel<PokemonDocument>;
 
 const PokemonsSchema = new Schema({
