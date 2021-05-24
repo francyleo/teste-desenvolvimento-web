@@ -3,13 +3,10 @@ import React, { HTMLAttributes, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, Name, PokeID, Type } from './styles';
 
-import TesteAvatar from '../../assets/eevee.png';
+import IPokemon from '../../@types/Pokemon.interface';
 
 interface PokemonCardProps extends HTMLAttributes<HTMLDivElement> {
-  pokemon: {
-    id: number;
-    name: string;
-  };
+  pokemon: IPokemon;
 }
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
@@ -26,11 +23,13 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
           <PokeID>{pokemon.id}</PokeID>
           {pokemon.name}
         </Name>
-        <Type className="text-center py-1 px-3">Lighting</Type>
-        <Type className="text-center py-1 px-3">Fire</Type>
+        <Type className="text-center py-1 px-3">{pokemon.type_one}</Type>
+        {pokemon.type_two && (
+          <Type className="text-center py-1 px-3">{pokemon.type_two}</Type>
+        )}
       </div>
       <div className="d-flex flex-grow-1 justify-content-end">
-        <img className="align-self-end" src={TesteAvatar} alt="Avatar" />
+        <img className="align-self-end" src={pokemon.img_name} alt="Avatar" />
       </div>
     </Container>
   );
