@@ -1,0 +1,33 @@
+export default interface IPokemon {
+  id: string;
+  name: string;
+  pokedex_string: string;
+  img_name: string;
+  generation: string;
+  evolution_age: string;
+  evolved: string;
+  family_id: string;
+  cross_gen: string;
+  type_one: string;
+  type_two: string;
+  weather_one: string;
+  weather_two: string;
+  stat_total: string;
+  atk: string;
+  def: string;
+  sta: string;
+  status_total: string;
+  legendary: string;
+  aquireable: string;
+  spawns: string;
+  regional: string;
+  raidable: string;
+  hatchable: string;
+  shiny: string;
+  nest: string;
+  is_new: string;
+  not_gettable: string;
+  future_evolve: string;
+  cp_39: string;
+  cp_40: string;
+}
