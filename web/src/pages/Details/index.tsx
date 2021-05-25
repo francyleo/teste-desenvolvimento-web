@@ -34,9 +34,10 @@ const Details: React.FC = () => {
             <h2 className="border-bottom border-primary">About</h2>
           </div>
           <h1>
+            <small>{`#${pokemon.id} `}</small>
             <strong>{pokemon.name}</strong>
           </h1>
-          <div className="col-2 mt-4">
+          <div className="col-3 mt-4">
             <Status type="atk">
               <strong className="mr-2">atk</strong>
               <span>{pokemon.atk}</span>
@@ -52,6 +53,58 @@ const Details: React.FC = () => {
             <Status type="total">
               <strong>total</strong>
               <span>{pokemon.stat_total}</span>
+            </Status>
+            <Status>
+              <strong>aquireable</strong>
+              <span>{pokemon.aquireable}</span>
+            </Status>
+            <Status>
+              <strong>family id</strong>
+              <span>{pokemon.family_id}</span>
+            </Status>
+            <Status>
+              <strong>hatchable</strong>
+              <span>{pokemon.hatchable}</span>
+            </Status>
+            <Status>
+              <strong>future evolve</strong>
+              <span>{pokemon.future_evolve}</span>
+            </Status>
+            <Status>
+              <strong>generation</strong>
+              <span>{pokemon.generation}</span>
+            </Status>
+            <Status>
+              <strong>100% CP @ 39</strong>
+              <span>{pokemon.cp_39}</span>
+            </Status>
+            <Status>
+              <strong>100% CP @ 40</strong>
+              <span>{pokemon.cp_40}</span>
+            </Status>
+            <Status>
+              <strong>nest</strong>
+              <span>{pokemon.nest}</span>
+            </Status>
+            <Status>
+              <strong>legendary</strong>
+              <span>{pokemon.legendary}</span>
+            </Status>
+            <Status>
+              <strong>pokedex</strong>
+              <span>{pokemon.pokedex_string}</span>
+            </Status>
+            <Status>
+              <strong>shiny</strong>
+              <span>{pokemon.shiny}</span>
+            </Status>
+            <Status>
+              <strong>spawns</strong>
+              <span>{pokemon.spawns}</span>
+            </Status>
+            <Status>
+              <strong>raidable</strong>
+              <span>{pokemon.raidable}</span>
             </Status>
           </div>
         </About>

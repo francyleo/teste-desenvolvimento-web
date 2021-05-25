@@ -1,21 +1,20 @@
 import styled from 'styled-components';
 
-interface StatusProps {
-  type: 'atk' | 'def' | 'sta' | 'total';
-}
+type StatusProps = 'atk' | 'def' | 'sta' | 'total' | 'default';
 
-const statusColors = {
+const statusColors: Record<StatusProps, string> = {
   atk: '#00adff',
   def: '#05ab21',
   sta: '#d20000',
-  total: '#000',
+  total: '#FFE62D',
+  default: '#ccc',
 };
 
 export const Container = styled.section`
   img {
     max-width: 250px;
     max-height: 250px;
-    position: fixed;
+    position: absolute;
     z-index: 2;
   }
 `;
@@ -28,11 +27,11 @@ export const About = styled.div`
   font-size: 2rem;
 `;
 
-export const Status = styled.div<StatusProps>`
+export const Status = styled.div<{ type?: StatusProps }>`
   display: flex;
   justify-content: space-between;
   strong {
     text-transform: uppercase;
-    color: ${({ type }) => statusColors[type]};
+    color: ${props => statusColors[props.type || 'default']};
   }
 `;

@@ -9,7 +9,7 @@ const NavBar: React.FC = () => {
 
   return (
     <Container>
-      <Title>Pokedex</Title>
+      <Title href="/">Pokedex</Title>
       <Toggle onClick={() => setDisplay(!display)}>
         <FaBars size={32} />
       </Toggle>
@@ -17,9 +17,6 @@ const NavBar: React.FC = () => {
         <ul>
           <li className="text-uppercase">
             <NavLink to="/">Home</NavLink>
-          </li>
-          <li className="text-uppercase">
-            <NavLink to="/upload">Upload Pokemons</NavLink>
           </li>
         </ul>
       </NavWraper>
