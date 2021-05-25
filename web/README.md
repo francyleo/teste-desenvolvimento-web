@@ -26,7 +26,7 @@ Pokedex usa vários projetos de código aberto para funcionar corretamente:
 
 ```sh
 $ git clone https://github.com/francyleo/teste-desenvolvimento-web.git
-$ cd teste-desenvolvimento-web
+$ cd teste-desenvolvimento-web/web
 $ npm install // ou yarn
 ```
 
