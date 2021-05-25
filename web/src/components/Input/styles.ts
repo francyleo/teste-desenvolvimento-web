@@ -42,8 +42,7 @@ export const Container = styled.div<ContainerProps>`
     flex: 1;
     width: 100%;
     background: transparent;
-    /* border: none; */
-    border: 2px solid #000;
+    border: none;
     outline: none;
     color: #000;
     font-size: 2rem;
