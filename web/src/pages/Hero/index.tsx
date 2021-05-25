@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import debounce from 'lodash/debounce';
 
-import { Pagination } from 'react-bootstrap';
+import ReactPaginate from 'react-paginate';
 import PokemonCard from '../../components/PokemonCard';
 import Input from '../../components/Input';
 import IPokemon from '../../@types/Pokemon.interface';
 
-import { Container, NotFound, PaginationWrapper } from './styles';
+import { Container, NotFound, NavPagination } from './styles';
 
 import Logo from '../../assets/logo.svg';
 import api from '../../service/api';
@@ -18,57 +18,60 @@ const Hero: React.FC = () => {
   const [pagination, setPagination] = useState<IPagination>({
     hasPrevPage: false,
     hasNextPage: false,
+    page: 1,
   } as IPagination);
 
-  const [filters, setFilters] = useState<IFilter>({
-    page: 1,
-    limit: 20,
-  } as IFilter);
+  const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
 
+  const debounced = useRef(debounce(cb => cb(), 1000));
   const handleSearch = useCallback(async () => {
-    const { data } = await api.get('/pokemons', { params: filters });
+    setLoading(true);
+    const { data } = await api.get('/pokemons', { params: { name: search } });
     const { docs, ...paginationData } = data;
     const pokemonsData: IPokemon[] = docs;
 
     setPagination(paginationData);
     setPokemons(pokemonsData);
-  }, [filters]);
-
-  const debounced = useRef(
-    debounce(() => {
-      // Delay for digitation
-      handleSearch();
-    }, 2000),
-  );
+    setLoading(false);
+  }, [search]);
 
   const handleInputChange = useCallback(
     (value: string) => {
-      setFilters({
-        ...filters,
-        name: value,
+      setSearch(value);
+      setPagination({
+        ...pagination,
         page: 1,
       });
-
-      debounced.current();
+      debounced.current(handleSearch);
     },
-    [debounced, filters],
+    [debounced, handleSearch, pagination],
   );
 
   const handlePaginate = useCallback(
     (page = 1) => {
-      setFilters({
-        ...filters,
+      setPagination({
+        ...pagination,
         page,
       });
 
       handleSearch();
     },
-    [handleSearch, filters],
+    [handleSearch, pagination],
   );
 
   useEffect(() => {
-    handleSearch();
-  }, [handleSearch]);
+    async function getAllPokemons(): Promise<void> {
+      const { data } = await api.get('/pokemons', { params: { name: search } });
+      const { docs, ...paginationData } = data;
+      const pokemonsData: IPokemon[] = docs;
+
+      setPagination(paginationData);
+      setPokemons(pokemonsData);
+    }
+
+    getAllPokemons();
+  }, []);
 
   return (
     <Container className="container">
@@ -91,41 +94,25 @@ const Hero: React.FC = () => {
           </div>
         ))}
 
-        {pokemons.length === 0 && (
+        {pokemons.length === 0 && !loading && (
           <NotFound className="text-center">
             Not found with
-            <strong>{` ${filters.name} `}</strong>
+            <strong>{` ${search} `}</strong>
             name 😢
           </NotFound>
         )}
       </div>
-      <PaginationWrapper className="d-flex justify-content-center my-4">
-        <Pagination>
-          <Pagination.Prev disabled={!pagination.hasPrevPage} />
-          {pagination.hasPrevPage && (
-            <Pagination.Item
-              onClick={() => handlePaginate(pagination.prevPage)}
-            >
-              {pagination.prevPage}
-            </Pagination.Item>
-          )}
 
-          <Pagination.Item active>{filters.page}</Pagination.Item>
-
-          {pagination.hasNextPage && (
-            <Pagination.Item
-              onClick={() => handlePaginate(pagination.nextPage)}
-            >
-              {pagination.nextPage}
-            </Pagination.Item>
-          )}
-
-          <Pagination.Next
-            onClick={() => handlePaginate(pagination.nextPage)}
-            disabled={!pagination.hasNextPage}
-          />
-        </Pagination>
-      </PaginationWrapper>
+      <NavPagination>
+        <ReactPaginate
+          containerClassName="mx-auto my-4"
+          onPageChange={({ selected }) => handlePaginate(selected)}
+          pageCount={pagination.totalPages}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={1}
+          initialPage={1}
+        />
+      </NavPagination>
     </Container>
   );
 };

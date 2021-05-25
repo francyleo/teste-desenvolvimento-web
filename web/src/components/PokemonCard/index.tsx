@@ -1,6 +1,8 @@
-import React, { HTMLAttributes, useCallback } from 'react';
+import React, { HTMLAttributes, useCallback, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
+
 import { Container, Name, PokeID, Type } from './styles';
 
 import IPokemon from '../../@types/Pokemon.interface';
@@ -11,6 +13,7 @@ interface PokemonCardProps extends HTMLAttributes<HTMLDivElement> {
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   const handleToAbout = useCallback(() => {
     history.push(`/about/${pokemon.id}`);
@@ -29,7 +32,17 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
         )}
       </div>
       <div className="d-flex flex-grow-1 justify-content-end">
-        <img className="align-self-end" src={pokemon.img_name} alt="Avatar" />
+        <img
+          className={`align-self-end ${loading ? 'd-none' : ''}`}
+          src={pokemon.img_name}
+          alt={pokemon.name}
+          onLoad={() => setLoading(false)}
+        />
+        {loading && (
+          <div className="spinner-border text-success" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        )}
       </div>
     </Container>
   );
