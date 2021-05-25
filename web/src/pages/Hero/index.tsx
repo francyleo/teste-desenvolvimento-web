@@ -11,7 +11,7 @@ import { Container, NotFound, NavPagination } from './styles';
 
 import Logo from '../../assets/logo.svg';
 import api from '../../service/api';
-import IFilter, { IPagination } from '../../@types/Filters.interface';
+import IPagination from '../../@types/Pagination.interface';
 
 const Hero: React.FC = () => {
   const [pokemons, setPokemons] = useState<IPokemon[]>([]);

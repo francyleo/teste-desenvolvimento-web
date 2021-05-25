@@ -1,8 +1,4 @@
-export default interface IFilter {
-  name: string;
-}
-
-export interface IPagination {
+export default interface IPagination {
   page: number;
   prevPage: number;
   nextPage: number;

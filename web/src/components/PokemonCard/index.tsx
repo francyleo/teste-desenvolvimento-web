@@ -1,7 +1,6 @@
 import React, { HTMLAttributes, useCallback, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton';
 
 import { Container, Name, PokeID, Type } from './styles';
 
