@@ -6,11 +6,11 @@ Projeto feito com o objetivo de provar meus conhecimentos nas tecnologias citada
 
 ### Página principal
 
-![Main_Page](/src/assets/docs/mainpage.png)
+![Main_Page](/src/assets/docs/mainpage.png?raw=true)
 
 ### Página de detalhes
 
-![Repo_page](/src/assets/docs/detailpage.png)
+![Repo_page](/src/assets/docs/detailpage.png?raw=true)
 
 ### Tecnologias usadas
 
